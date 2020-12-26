@@ -1,0 +1,52 @@
+
+https://docs.nestjs.com/
+
+NestJS는 typescript를 100% 사용한다. 기본파일의 확장자는 typescript의 ts
+
+nest의 기본적인 사용키는 관리자 모드의 터미널에서 nest를 입력 하면 나온다.
+
+nestjs
+    -main
+        : 시작점, PORT설정과 root모듈을 가져옴
+    -app.module
+        : root 모듈 하나의 모듈만 있을 수 있다.
+    -app.controller
+        : url을 가져와서 함수로 매핑(exporess의 route?)
+          라우터를 셋팅하지 않아도 된다
+          END POINT를 지정 하여 사용
+          @Get @Put @Patch @Update @Delete @Post 등 선언하는 것만으로 각각의 HTTP 리퀘스트를 얻을 수 있다.
+          END POINT에 페턴기반 라우팅이 가능하다. @Get('a*t') ast, a-st aat 매칭이 됨 ?,+,*,() 를 사용할수 있다.
+    -app.service
+        : nestjs는 컨트롤러(url을 가져와 함수로 매핑)와 비지니스로직을 분리
+          비지니스로직을 담당, 실질적인 function을 가짐
+          컨트롤러와 서비스의 함수이름을 같이 만들어 주는것이 기본이지만
+          컨트롤러에서 선언한 함수이름과 호출하는 서비스의 함수명을 달리해도 동작은 한다.
+
+NestJS는 @(데코레이터) 와 함께 한다.
+    - 데코레이터는 class에 함수의 기능을 추가할 수 있게 한다.
+      class 쉬의 함수이고, class를 위해 움직인다고 생각하자
+      테코레이터는 꾸며주는 함수나 클래스랑 붙어 있어야 한다(비어있는 행간이 있으면 안된다.)
+
+Status code를 기본은 200,201이지만 변경을 원할 경우 @Httpcode(???)로 사용이 가능하다.
+상황별로 다를 경우에는 @Res 혹은 에러를 throw.
+
+--------노마드코더 강좌에서는 movie API를 만들지만 여기서는 BPMN API를 만들어 보자
+
+Database 관련은 블로그 보고 진행
+https://johnmarc.tistory.com/42?category=821195
+
+typeORM 사용
+https://typeorm.io/#/
+
+npm install --save @nestjs/typeorm typeorm mysql
+
+typescript - typeORM
+https://m.blog.naver.com/PostView.nhn?blogId=psj9102&logNo=221428252264&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+
+
+
+
+
+
+
