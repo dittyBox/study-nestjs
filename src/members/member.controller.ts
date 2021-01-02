@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Param, Post, Delete } from '@nestjs/common';
 import { Response,ResponseMessage} from "../util/response.utill";
 import { Register,MemberInfo,Login  } from "./member.type";
 import { MemberService } from "./member.service";
+import { CreateMemberDto } from './dto/create-member.dto';
 
 @Controller('member')
 export class MemberController {
@@ -9,10 +10,14 @@ export class MemberController {
     constructor(private readonly memberService: MemberService){}
 
     @Post()
-    async addMember(@Body() register: Register): Promise<Response> {
+    async addMember(@Body() register: CreateMemberDto): Promise<Response> {
 
         try{
             const member:MemberInfo = await this.memberService.addMember(register);
+
+            if(!member){
+                return new ResponseMessage().error(9001,`사용자 등록 실패 Login_id: ${register.LOGIN_ID}`).build();
+            }
 
             return new ResponseMessage().success().body(member).build();
             
@@ -21,8 +26,40 @@ export class MemberController {
         }
     }
 
-    @Get('/login/')
-    getLoginMember(){
-        return `누가 먼저 실행이 될까?`;
+    @Get('/:memberid')
+    async getMember(@Param("memberid") memberid: number) : Promise<Response> {
+        try{
+            const member:MemberInfo = await this.memberService.getMember(memberid);
+
+            if(!member){
+                return new ResponseMessage().error(404,`Not found memberid : ${memberid}`).build();
+            }
+
+            return new ResponseMessage().success().body(member).build();
+            
+        } catch(err){
+            Logger.error(err);
+        }
     }
+
+    @Delete('/:memberid')
+    async deleteMember(@Param("memberid") memberid: number) : Promise<Response>{
+        try{
+            const member:MemberInfo = await this.memberService.getMember(memberid);
+
+            if(!member){
+                return new ResponseMessage().error(404,`Not found memberid : ${memberid}`).build();
+            }
+
+            return new ResponseMessage().success().body(member).build();
+            
+        } catch(err){
+            Logger.error(err);
+        }
+    }
+
+/*     @Get('/:memberid')
+    getTestValue(@Param("memberid") memberid: string) : string {
+        return `<B><center><h1>너의 이름은 ${memberid} 입니다.</h1></center></B>`;
+    } */
 }

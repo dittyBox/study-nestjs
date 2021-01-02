@@ -3,56 +3,53 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
     @Entity()
     export class Member {
       @PrimaryGeneratedColumn()
-      memberid: number;
+      MEMBERID: number;
     
       @Column({ length: 1 })
-      membertype: string;
-    
-      @Column({ length: 200 })
-      name: string;
+      TYPE: string;
     
       @Column({ length: 1 })
-      state: string;
+      STATE: string;
     
-      @Column({ length: 50 })
-      employeenumber: string;
-    
-      @Column()
-      deptid: number;
+      @Column({ length: 1 })
+      ISABSENT: string;
     
       @Column({ length: 100 })
-      deptname: string;
-    
-      @Column({ length: 50 })
-      deptcode: string;
-    
-      @Column()
-      pdeptid: number;
+      NAME: string;
     
       @Column({ length: 100 })
-      pdeptname: string;
+      JOBTITLE: string;
+    
+      @Column({ length: 10 })
+      DEPT_ID: string;
+    
+      @Column({ length: 100 })
+      DEPT_NAME: string;
+    
+      @Column({ length: 20 })
+      DEPT_CODE: string;
+    
+      @Column({ length: 100 })
+      PASSWORD: string;
+    
+      @Column({ length: 100 })
+      EMAIL: string;
+    
+      @Column({ length: 10 })
+      PARENT_DEPT_ID: string;
     
       @Column({ length: 50 })
-      pdeptcode: string;
+      LOGIN_ID: string;
     
-      @Column()
-      absenceid: number;
+      @Column({ length: 50 })
+      EMPLOYEE: string;
     
       @Column("datetime")
-      absencesdtime: Date;
+      ABSENT_START_DATE_TIME: Date;
     
       @Column("datetime")
-      absenceedtime: Date;
+      ABSENT_END_DATE_TIME: Date;
     
-      @Column({ length: 100 })
-      loginid: string;
-    
-      @Column({ length: 100 })
-      password: string;
-    
-      @Column({ length: 200 })
-      email: string;
-    
-      @Column("timestamp")
-      creationdtime: Date;
+      @Column({ length: 10 })
+      ABSENT_ID: string;
     }

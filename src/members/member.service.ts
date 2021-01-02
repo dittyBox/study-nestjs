@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { CreateMemberDto } from './dto/create-member.dto';
 import { MemberRepository } from "./member.repository";
 import { MemberInfo, Register } from './member.type';
 
@@ -6,32 +7,43 @@ import { MemberInfo, Register } from './member.type';
 export class MemberService {
     constructor(private readonly memberRepository: MemberRepository){}
 
-    public async addMember(register: Register): Promise<MemberInfo>{
-        const registerMember = await this.memberRepository.create();
+    public async getMember(memberid: number): Promise<MemberInfo>{
+        const member: MemberInfo = await this.memberRepository.findOne({
+            where:{
+                MEMBERID: memberid
+            }
+        });
 
-        registerMember.membertype = register.membertype;
-        registerMember.loginid = register.loginid;
-        registerMember.password = register.password;
-        registerMember.email = register.email;
-        registerMember.state = register.state;
-        registerMember.employeenumber = register.employeenumber;
-        registerMember.deptid = register.deptid;
-        registerMember.name = register.name;
+        return member;
+    }
 
-        const member = await this.memberRepository.save(registerMember);
-        const memberInfo: MemberInfo = {
-            name: member.name,
-            memberid: member.memberid,
-            membertype: member.membertype,
-            loginid: member.loginid,  
-            password: member.password,
-            email: member.email, 
-            state: member.state,
-            employeenumber: member.employeenumber,
-            creationdtime: member.creationdtime
-        };
+    public async addMember(register: CreateMemberDto): Promise<MemberInfo>{
+        try{
 
-        return memberInfo;
+            const registerMember = await this.memberRepository.create();
+
+            registerMember.TYPE = register.TYPE;
+            registerMember.STATE = register.STATE;
+            registerMember.ISABSENT = register.ISABSENT;
+            registerMember.NAME = register.NAME;
+            registerMember.LOGIN_ID = register.LOGIN_ID;
+            registerMember.PASSWORD = register.PASSWORD;
+    
+            const member = await this.memberRepository.save(registerMember);
+            const memberInfo: MemberInfo = {
+                MEMBERID: member.MEMBERID,
+                TYPE: member.TYPE,
+                STATE: member.STATE,
+                ISABSENT: member.ISABSENT,  
+                NAME: member.NAME,
+                LOGIN_ID: member.LOGIN_ID, 
+                PASSWORD: member.PASSWORD
+            };
+            
+            return memberInfo;
+        }catch(err){
+            return null;
+        }
 
     }
     

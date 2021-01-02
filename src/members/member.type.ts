@@ -1,39 +1,44 @@
 export type Login = {
- loginid: string;
- password: string;   
+    LOGIN_ID: string;
+    PASSWORD: string;   
 }
 
 export type Register = {
-    membertype: string;
-    loginid: string;  
-    password: string;
-    name: string;
-    email: string;  
-    state: string;
-    employeenumber: string;
-    deptid: number;
-    deptname: string;
-    deptcode: string;
-    pdeptid: number;
-    pdeptname: string;
-    pdeptcode: string;
-    creationdtime: Date;
+    MEMBERID?: number;
+    TYPE: string;  
+    STATE: string;
+    ISABSENT: string;
+    NAME: string;  
+    JOBTITLE: string;
+    DEPT_ID: string;
+    DEPT_NAME: string;
+    DEPT_CODE: string;
+    PASSWORD: string;
+    EMAIL: string;
+    PARENT_DEPT_ID: string;
+    LOGIN_ID: string;
+    EMPLOYEE: string;
+    ABSENT_START_DATE_TIME: Date;
+    ABSENT_END_DATE_TIME: Date;
+    ABSENT_ID: string;
 }
 
 export type MemberInfo = {
-    memberid: number;
-    membertype: string;
-    loginid: string;  
-    password: string;
-    name: string;
-    email: string;  
-    state: string;
-    employeenumber: string;
-    deptid?: number;
-    deptname?: string;
-    deptcode?: string;
-    pdeptid?: number;
-    pdeptname?: string;
-    pdeptcode?: string;
-    creationdtime: Date;
+    MEMBERID: number;
+    TYPE: string;  
+    STATE: string;
+    ISABSENT: string;
+    NAME: string;  
+    JOBTITLE?: string;
+    DEPT_ID?: string;
+    DEPT_NAME?: string;
+    DEPT_CODE?: string;
+    PASSWORD: string;
+    EMAIL?: string;
+    PARENT_DEPT_ID?: string;
+    LOGIN_ID: string;
+    EMPLOYEE?: string;
+    ABSENT_START_DATE_TIME?: Date;
+    ABSENT_END_DATE_TIME?: Date;
+    ABSENT_ID?: string;
 }
