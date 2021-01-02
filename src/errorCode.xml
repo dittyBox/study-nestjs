@@ -1,5 +1,6 @@
 <ReturnCode>
     <Code="1">정상<Code>
     <Code="404">찾기 실패<Code>
+    <Code="9000">관리자 인증 실패<Code>
     <Code="9001">사용자 등록 실패<Code>
 </ReturnCode>       

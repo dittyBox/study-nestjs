@@ -53,3 +53,20 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
       @Column({ length: 10 })
       ABSENT_ID: string;
     }
+
+    
+    @Entity()
+    export class authmember {
+      @PrimaryGeneratedColumn()
+      MEMBERID: number;
+    
+      @Column({ length: 100 })
+      NAME: string;
+    
+      @Column({ length: 1 })
+      TYPE: string;
+    
+      @Column()
+      PROCESS_DEFINITION_ID: number;
+    
+    }

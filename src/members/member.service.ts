@@ -1,11 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMemberDto } from './dto/create-member.dto';
-import { MemberRepository } from "./member.repository";
-import { MemberInfo, Register } from './member.type';
+import { MemberRepository,AuthMemberRepository } from "./member.repository";
+import { AuthMemberInfo, MemberInfo, Register } from './member.type';
 
 @Injectable()
 export class MemberService {
-    constructor(private readonly memberRepository: MemberRepository){}
+    constructor(
+        private readonly memberRepository: MemberRepository,
+        private readonly authMemberRepository: AuthMemberRepository
+        ){}
+
+    public async getAuthMember(memberid: number): Promise<AuthMemberInfo>{
+        const member: AuthMemberInfo = await this.authMemberRepository.findOne({
+            where:{
+                MEMBERID: memberid,
+                TYPE: 'A',
+            }
+        });
+
+        return member;
+    }
 
     public async getMember(memberid: number): Promise<MemberInfo>{
         const member: MemberInfo = await this.memberRepository.findOne({
@@ -39,7 +53,7 @@ export class MemberService {
                 LOGIN_ID: member.LOGIN_ID, 
                 PASSWORD: member.PASSWORD
             };
-            
+
             return memberInfo;
         }catch(err){
             return null;

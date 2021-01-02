@@ -42,3 +42,10 @@ export type MemberInfo = {
     ABSENT_END_DATE_TIME?: Date;
     ABSENT_ID?: string;
 }
+
+export type AuthMemberInfo = {
+    MEMBERID: number;
+    TYPE: string;  
+    NAME: string;  
+    PROCESS_DEFINITION_ID?: number;
+}
