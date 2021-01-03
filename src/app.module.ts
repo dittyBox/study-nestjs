@@ -1,16 +1,20 @@
-import { LoginController } from './members/login/login.controller';
-import { LoginService } from './members/login/login.service';
-import { UsersModule } from './members/member.module';
+import { DefinitionModule } from './bpmn/definition/definition.module';
+import { AppController } from './app.controller';
+import { BpmnModule } from './bpmn/bpmn.module';
+import { MemberModule } from './members/member.module';
+import { AuthModule } from './members/auth/auth.module';
 import { Module } from '@nestjs/common';
-import { BpmnController } from './bpmn/bpmn.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    UsersModule, TypeOrmModule.forRoot()],
+        DefinitionModule, 
+        BpmnModule, 
+        AuthModule,
+        MemberModule, 
+        TypeOrmModule.forRoot()],
   controllers: [
-    LoginController, BpmnController],
-  providers: [
-    LoginService,],
+        AppController, ],
+  providers: [],
 })
 export class AppModule { }

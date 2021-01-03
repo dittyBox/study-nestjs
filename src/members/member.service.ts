@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { MemberRepository,AuthMemberRepository } from "./member.repository";
-import { AuthMemberInfo, MemberInfo, Register } from './member.type';
+import { AuthMemberInfo, MemberInfo } from './member.type';
 
 @Injectable()
 export class MemberService {
@@ -21,6 +21,7 @@ export class MemberService {
         return member;
     }
 
+
     public async getMember(memberid: number): Promise<MemberInfo>{
         const member: MemberInfo = await this.memberRepository.findOne({
             where:{
@@ -28,6 +29,15 @@ export class MemberService {
             }
         });
 
+        return member;
+    }
+
+    public async loginMember(loginid: string): Promise<MemberInfo>{
+        const member: MemberInfo = await this.memberRepository.findOne({
+            where:{
+                LOGIN_ID: loginid
+            }
+        });
         return member;
     }
 

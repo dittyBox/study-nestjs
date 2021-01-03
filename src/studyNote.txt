@@ -43,7 +43,10 @@ npm install --save @nestjs/typeorm typeorm mysql
 typescript - typeORM
 https://m.blog.naver.com/PostView.nhn?blogId=psj9102&logNo=221428252264&proxyReferer=https:%2F%2Fwww.google.com%2F
 
-
+2021-01-02
+https://docs.nestjs.com/guards
+인증을 구축
+나머지는 내일 해보자 이상하게 피곤~ 화이팅~
 
 
 

@@ -1,13 +1,21 @@
-import { Body, Controller, Get, Logger, Param, Post, Delete } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Param, Post, Delete, UseGuards, Request } from '@nestjs/common';
 import { Response,ResponseMessage} from "../util/response.utill";
-import { Register,MemberInfo,Login, AuthMemberInfo  } from "./member.type";
+import { MemberInfo, AuthMemberInfo  } from "./member.type";
 import { MemberService } from "./member.service";
 import { CreateMemberDto } from './dto/create-member.dto';
+import { LocalAuthGuard } from './auth/guards/local-auth.guard';
 
 @Controller('member')
 export class MemberController {
 
     constructor(private readonly memberService: MemberService){}
+
+    @UseGuards(LocalAuthGuard)
+
+    @Post('/login')
+    async login(@Request() req) {
+      return req.user;
+    }
 
     @Post()
     async addMember(@Body() register: CreateMemberDto): Promise<Response> {
