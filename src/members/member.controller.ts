@@ -23,11 +23,11 @@ export class MemberController {
         try{
 
             //인증된 사용자 인지 확인
-            const authMember:AuthMemberInfo = await this.memberService.getAuthMember(register.AUTHMEMBERID);
-console.log(register.AUTHMEMBERID);
-            if(!authMember){
-                return new ResponseMessage().error(9000,`권한오류 Memberid: ${register.AUTHMEMBERID}`).build();
-            }
+            //const authMember:AuthMemberInfo = await this.memberService.getAuthMember(register.AUTHMEMBERID);
+            //console.log(register.AUTHMEMBERID);
+            //if(!authMember){
+           //     return new ResponseMessage().error(9000,`권한오류 Memberid: ${register.AUTHMEMBERID}`).build();
+            //}
 
             const member:MemberInfo = await this.memberService.addMember(register);
 

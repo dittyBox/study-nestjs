@@ -48,6 +48,16 @@ https://docs.nestjs.com/guards
 인증을 구축
 나머지는 내일 해보자 이상하게 피곤~ 화이팅~
 
+post test
+{
+        "TYPE": "U",
+        "STATE": "A",
+        "ISABSENT": "N",
+        "NAME": "Tester1",
+        "LOGIN_ID": "Tester1",
+        "PASSWORD": "Tester1"
+}
+
 
 
 

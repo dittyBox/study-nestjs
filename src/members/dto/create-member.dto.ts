@@ -2,8 +2,8 @@ import { IsDate, IsEmail, IsNumber, IsOptional, IsString } from 'class-validator
 
 export class CreateMemberDto{
 
-    @IsNumber()
-    readonly AUTHMEMBERID: number;
+    //@IsNumber()
+    //readonly AUTHMEMBERID: number;
 
     @IsString()
     readonly TYPE: string;

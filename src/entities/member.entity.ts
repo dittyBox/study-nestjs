@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-    
+import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { InternalServerErrorException } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
     @Entity()
     export class Member {
       @PrimaryGeneratedColumn()
@@ -52,6 +53,30 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
     
       @Column({ length: 10 })
       ABSENT_ID: string;
+        
+      @BeforeInsert()
+      @BeforeUpdate()
+      async hashPassword(): Promise<void> {
+        if (!this.PASSWORD) {
+          return;
+        }
+        try {
+          this.PASSWORD = await bcrypt.hash(this.PASSWORD, 10);
+        } catch (error) {
+          console.log(error);
+          throw new InternalServerErrorException();
+        }
+      }
+    
+      async checkPassword(aPassword: string): Promise<boolean> {
+        try {
+          const ok = await bcrypt.compare(aPassword, this.PASSWORD);
+          return ok;
+        } catch (error) {
+          console.log(error);
+          throw new InternalServerErrorException();
+        }
+      }
     }
 
     
