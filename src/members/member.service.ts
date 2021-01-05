@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { MemberRepository,AuthMemberRepository } from "./member.repository";
 import { AuthMemberInfo, MemberInfo } from './member.type';
@@ -6,6 +7,7 @@ import { AuthMemberInfo, MemberInfo } from './member.type';
 @Injectable()
 export class MemberService {
     constructor(
+        private readonly config: ConfigService,
         private readonly memberRepository: MemberRepository,
         private readonly authMemberRepository: AuthMemberRepository
         ){}
@@ -28,7 +30,7 @@ export class MemberService {
                 MEMBERID: memberid
             }
         });
-
+console.log(this.config.get('DATABASE_URL'));
         return member;
     }
 

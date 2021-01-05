@@ -5,7 +5,7 @@ import { MemberService } from "./member.service";
 import { CreateMemberDto } from './dto/create-member.dto';
 import { LocalAuthGuard } from './auth/guards/local-auth.guard';
 
-@Controller('member')
+@Controller('members')
 export class MemberController {
 
     constructor(private readonly memberService: MemberService){}
