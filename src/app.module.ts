@@ -14,7 +14,12 @@ import {ConfigModule} from '@nestjs/config';
         BpmnModule, 
         AuthModule,
         MemberModule, 
-        TypeOrmModule.forRoot()],
+        TypeOrmModule.forRoot({
+            type: 'postgres',
+            url: process.env.DATABASE_URL,
+            autoLoadEntities: true,
+            synchronize: true
+          })],
   controllers: [
         AppController, ],
   providers: [],
