@@ -15,11 +15,17 @@ import {ConfigModule} from '@nestjs/config';
         AuthModule,
         MemberModule, 
         TypeOrmModule.forRoot({
-            type: 'postgres',
-            url: process.env.DATABASE_URL,
-            autoLoadEntities: true,
-            synchronize: true
-          })],
+            type: "mariadb",
+            host: process.env.DATABASE_HOST,
+            port: Number(process.env.DATABASE_PORT),
+            username: process.env.DATABASE_USERNAME,
+            password: process.env.DATABASE_PASSWORD,
+            database: process.env.DATABASE_NAME,
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
+            connectTimeout: Number(process.env.CONNECT_TIMEOUT),
+            logging: true,
+            synchronize: false
+            })],
   controllers: [
         AppController, ],
   providers: [],
