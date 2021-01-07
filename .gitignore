@@ -4,6 +4,7 @@
 
 # ENV
 *.env
+*.env.dev
 *.dev
 *.env.*
 *.env*
