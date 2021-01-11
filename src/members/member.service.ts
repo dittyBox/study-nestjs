@@ -7,7 +7,7 @@ import { AuthMemberInfo, MemberInfo } from './member.type';
 @Injectable()
 export class MemberService {
   constructor(
-    private readonly config: ConfigService,
+    //private readonly config: ConfigService,
     private readonly memberRepository: MemberRepository,
     private readonly authMemberRepository: AuthMemberRepository,
   ) {}

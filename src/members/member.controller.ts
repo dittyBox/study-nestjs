@@ -3,25 +3,14 @@ import { Response,ResponseMessage} from "../util/response.utill";
 import { MemberInfo, AuthMemberInfo  } from "./member.type";
 import { MemberService } from "./member.service";
 import { CreateMemberDto } from './dto/create-member.dto';
-import { LocalAuthGuard } from './auth/guards/local-auth.guard';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { AuthService } from './auth/auth.service';
 
 @Controller('members')
 export class MemberController {
   constructor(
     private readonly memberService: MemberService,
-    private authService: AuthService,
   ) {}
 
-  @UseGuards(LocalAuthGuard)
-  @Post('/login')
-  async login(@Body() logins: LoginMemberDto): Promise<Response> {
-    const tokens = this.authService.login(logins.LOGIN_ID);
-    return new ResponseMessage().success().body(tokens).build();
-  }
-
-  @UseGuards(JwtAuthGuard)
   @Post()
   async addMember(@Body() register: CreateMemberDto): Promise<Response> {
     try {
@@ -63,6 +52,7 @@ export class MemberController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete('/:memberid')
   async deleteMember(@Param('memberid') memberid: number): Promise<Response> {
     try {

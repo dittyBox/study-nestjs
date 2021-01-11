@@ -74,3 +74,8 @@ export class LoginMemberDto {
   @IsString()
   readonly PASSWORD: string;
 }
+export class tokenDto {
+  @IsString()
+  readonly access_token: string;
+}
+
