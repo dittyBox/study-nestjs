@@ -65,3 +65,12 @@ export class CreateMemberDto{
     readonly ABSENT_ID: string;
 
 }
+
+
+export class LoginMemberDto {
+  @IsString()
+  readonly LOGIN_ID: string;
+
+  @IsString()
+  readonly PASSWORD: string;
+}
