@@ -11,6 +11,11 @@ async function bootstrap() {
       transform:true,   //데이터를 받아서 넘겨줄때 자동으로 타입을 변환해준다.
     })
   );
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
   await app.listen(8398);
 }
 bootstrap();
