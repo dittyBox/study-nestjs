@@ -14,7 +14,7 @@ import {ConfigModule} from '@nestjs/config';
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRETKEY, // env에 추가 필요 JWT_SECRETKEY: 아무거나
-      signOptions: { expiresIn: '3600s' }, //토큰의 만료시간 60초
+      signOptions: { expiresIn: '360000s' }, //토큰의 만료시간 60초
     }),
   ],
   controllers: [],
