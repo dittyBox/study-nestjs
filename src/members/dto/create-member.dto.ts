@@ -1,5 +1,5 @@
 import { IsDate, IsEmail, IsNumber, IsOptional, IsString } from 'class-validator';
-
+//Typeorm의 Entity와 혼동하지 말자
 export class CreateMemberDto{
 
     //@IsNumber()

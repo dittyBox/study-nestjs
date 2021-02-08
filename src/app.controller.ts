@@ -13,8 +13,16 @@ export class AppController {
     @Post('/login')
     async login(@Body() logins: LoginMemberDto): Promise<Response> {
        const tokens = await  this.authService.login(logins);
-       console.log(tokens);
-       return new ResponseMessage().success().body(tokens).build();
+       console.log('tokens : ',tokens);
+       
+      if (!tokens) {
+        return new ResponseMessage()
+          .error(8001, `로그인에 실패 하였습니다. Login_id: ${logins.LOGIN_ID}`)
+          .build();
+      } else {
+        return new ResponseMessage().success().body(tokens).build();
+      }
+      
     }
 
     @UseGuards(JwtAuthGuard)

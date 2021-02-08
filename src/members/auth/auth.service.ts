@@ -24,7 +24,9 @@ export class AuthService {
 
   async login(user: LoginMemberDto) {
     const member: MemberInfo = await this.memberService.loginMember(user.LOGIN_ID);
-
+    if(!member){
+      return false;
+    }
     const payload = { memberid: member.LOGIN_ID, membername: member.NAME };
     const access_token: string = this.jwtService.sign(payload);
 

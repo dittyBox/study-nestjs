@@ -20,7 +20,7 @@ export class MemberController {
       //if(!authMember){
       //     return new ResponseMessage().error(9000,`권한오류 Memberid: ${register.AUTHMEMBERID}`).build();
       //}
-
+     
       const member: MemberInfo = await this.memberService.addMember(register);
 
       if (!member) {
@@ -31,7 +31,10 @@ export class MemberController {
 
       return new ResponseMessage().success().body(member).build();
     } catch (err) {
-      Logger.error(err);
+      //Logger.error(err);
+        return new ResponseMessage()
+          .error(9001, `사용자 등록 실패 Login_id: ${register.LOGIN_ID}`)
+          .build();
     }
   }
 

@@ -44,6 +44,7 @@ export class MemberService {
 
   public async addMember(register: CreateMemberDto): Promise<MemberInfo> {
     try {
+      
       const registerMember = await this.memberRepository.create();
 
       registerMember.TYPE = register.TYPE;
