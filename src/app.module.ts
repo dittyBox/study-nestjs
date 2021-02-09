@@ -1,8 +1,7 @@
 import { DefinitionModule } from './bpmn/definition/definition.module';
-import { AppController } from './app.controller';
 import { BpmnModule } from './bpmn/bpmn.module';
 import { MemberModule } from './members/member.module';
-import { AuthModule } from './members/auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {ConfigModule} from '@nestjs/config';
@@ -26,8 +25,7 @@ import {ConfigModule} from '@nestjs/config';
             logging: true,
             synchronize: false
             })],
-  controllers: [
-        AppController, ],
+  controllers: [],
   providers: [],
 })
 export class AppModule { }

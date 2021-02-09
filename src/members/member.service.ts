@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { MemberRepository, AuthMemberRepository } from './member.repository';
 import { AuthMemberInfo, MemberInfo } from './member.type';

@@ -3,7 +3,7 @@ import { Response,ResponseMessage} from "../util/response.utill";
 import { MemberInfo, AuthMemberInfo  } from "./member.type";
 import { MemberService } from "./member.service";
 import { CreateMemberDto } from './dto/create-member.dto';
-import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('members')
 export class MemberController {

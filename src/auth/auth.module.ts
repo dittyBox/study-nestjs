@@ -1,15 +1,16 @@
+import { AuthController } from './auth.controller';
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { MemberModule } from '../member.module';
+import { MemberModule } from '../members/member.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
-import {ConfigModule} from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal: true,envFilePath: ['.env.dev'],}),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.dev'], }),
     MemberModule,
     PassportModule,
     JwtModule.register({
@@ -17,8 +18,9 @@ import {ConfigModule} from '@nestjs/config';
       signOptions: { expiresIn: '360000s' }, //토큰의 만료시간 60초
     }),
   ],
-  controllers: [],
+  controllers: [
+    AuthController,],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   exports: [AuthService],
 })
-export class AuthModule {}
+export class AuthModule { }
